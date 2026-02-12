@@ -1,208 +1,180 @@
-\# Advanced Book Scraper
+📘 Advanced Book Scraper CLI
+
+A scalable, multi-threaded command-line web scraping tool built in Python.
+Designed with production-oriented architecture, retry handling, encoding safety, and structured output.
+
+📌 Project Overview
+
+This project demonstrates a robust web scraping pipeline using Python.
+It extracts structured book data from BooksToScrape and provides:
+
+Parallel data extraction
+
+Pagination automation
+
+Clean numeric parsing
+
+Structured logging
+
+CLI-based filtering and sorting
+
+CSV export with analytics summary
+
+The goal of this project is to simulate real-world scraper design patterns rather than build a simple script.
+
+⚙️ Core Capabilities
+🔄 Concurrent Scraping
+
+Implements ThreadPoolExecutor to fetch multiple pages efficiently.
+
+🔁 Retry Strategy
+
+Uses urllib3 Retry with HTTPAdapter for resilient network handling.
+
+🔐 Session Management
+
+Leverages requests.Session() for connection pooling and improved performance.
+
+📄 Automatic Pagination Detection
+
+Dynamically determines total available pages.
+
+🧹 Encoding-Safe Data Parsing
+
+Handles UTF-8 encoding and currency symbol anomalies.
+
+🧾 CLI-Based Filtering & Sorting
+
+Search books by keyword and sort results by price.
+
+📊 Analytics Summary
+
+Automatically calculates:
+
+Total Matches
+
+Average Price
+
+Cheapest Book
+
+Most Expensive Book
+
+🏗 Architecture Design
+BookScraper Class
+│
+├── Session Initialization (Retry + Headers)
+├── Pagination Detection
+├── Page Scraping (Concurrent Execution)
+├── Data Parsing & Cleaning
+├── Filtering Logic
+├── Sorting Logic
+├── CSV Export
+└── Structured Output + Logging
 
 
+This modular design improves:
 
-A scalable, multi-threaded CLI-based web scraper built in Python.
+Maintainability
 
+Scalability
 
+Testability
 
-This project scrapes book data from http://books.toscrape.com and provides structured output, analytics, and CSV export.
+🛠 Tech Stack
+Component	Technology
+Language	Python 3.x
+HTTP Client	requests
+Parsing	BeautifulSoup4
+Concurrency	concurrent.futures
+CLI Interface	argparse
+Logging	logging
+Retry Handling	urllib3 Retry
+🚀 Installation
 
-
-
----
-
-
-
-\## 🚀 Features
-
-
-
-\- Multi-threaded scraping using ThreadPoolExecutor
-
-\- Session reuse for performance optimization
-
-\- Automatic pagination detection
-
-\- Retry mechanism for fault tolerance
-
-\- CLI argument support
-
-\- Encoding-safe data parsing
-
-\- Structured logging
-
-\- CSV export
-
-\- Summary analytics (average, min, max price)
-
-
-
----
-
-
-
-\## 🛠 Tech Stack
-
-
-
-\- Python 3.x
-
-\- requests
-
-\- BeautifulSoup4
-
-\- concurrent.futures
-
-\- argparse
-
-\- logging
-
-
-
----
-
-
-
-\## 📦 Installation
-
-
-
-Clone the repository:
-
-
+Clone repository:
 
 git clone https://github.com/Nagukore/advanced-book-scraper.git
-
 cd advanced-book-scraper
-
-
-
 
 
 Create virtual environment:
 
-
-
 python -m venv .venv
-
-.venv\\Scripts\\activate
-
-
-
+.venv\Scripts\activate
 
 
 Install dependencies:
 
-
-
 pip install -r requirements.txt
 
-
-
-
-
----
-
-
-
-\## ▶ Usage
-
-
-
-Basic search:
-
-
-
+▶ Usage Examples
+Basic Keyword Search
 python main.py --keyword travel
 
-
-
-
-
-Sort by price:
-
-
-
+Sort by Price (Ascending)
 python main.py --keyword travel --sort asc
 
-
-
-
-
-Limit number of pages:
-
-
-
+Limit Pages
 python main.py --keyword travel --pages 10
 
+Custom Output File
+python main.py --keyword travel --output travel_books.csv
+
+📊 Sample Output Structure
+
+Console Output:
+
+No   Title                                Price     Rating   Page
+--------------------------------------------------------------------
+1    It's Only the Himalayas              £45.17    Two      5
+...
 
 
+Summary:
+
+Total Matches: 12
+Average Price: £34.56
+Cheapest: £12.95
+Most Expensive: £57.83
 
 
-Custom output file:
+CSV Output:
 
+Title	Price	Rating	Page
+🎯 Engineering Highlights
 
+Designed using OOP principles
 
-python main.py --keyword travel --output results.csv
+Implements concurrency for performance
 
+Handles real-world encoding issues
 
+Applies retry/backoff mechanism
 
+Built as reusable CLI tool
 
+Clean Git workflow & documentation
 
----
+📈 Potential Enhancements
 
+SQLite integration
 
+Category-wise scraping
 
-\## 📊 Output
+REST API wrapper (FastAPI)
 
+Streamlit analytics dashboard
 
+Docker containerization
 
-\- Book Title
+Automated unit tests
 
-\- Price
+⚠ Disclaimer
 
-\- Rating
+This scraper is built for educational purposes using a public sandbox website.
 
-\- Page Number
+👤 Author
 
-\- Summary Statistics
-
-
-
-Results are exported to CSV format.
-
-
-
----
-
-
-
-\## 🎯 Learning Highlights
-
-
-
-\- Robust web scraping architecture
-
-\- Handling encoding issues in HTML
-
-\- Multi-threaded execution
-
-\- CLI tool development
-
-\- Structured logging practices
-
-
-
----
-
-
-
-\## ⚠ Disclaimer
-
-
-
-Built for educational purposes using a public practice website.
-
-
-
+Nagesh
+AI/ML & Web Development Enthusiast
+Focused on scalable system design and automation tools.
