@@ -1,144 +1,158 @@
-# 📘 Advanced Book Scraper CLI
+# Advanced Book Scraper CLI
 
-> A scalable, multi-threaded command-line web scraping tool built in Python.  
-> Designed using production-oriented architecture with retry handling, encoding safety, concurrency, and structured output.
+A production-oriented, multi-threaded command-line web scraper built in Python.
 
----
-
-## 📌 Project Overview
-
-This project demonstrates a robust scraping pipeline built with clean architecture principles.
-
-It extracts structured book data from:
-
-🔗 http://books.toscrape.com
-
-### 🎯 Objectives
-
-- Simulate real-world scraper architecture
-- Implement concurrency for performance
-- Handle encoding & currency parsing issues
-- Build a reusable CLI-based scraping tool
+This project demonstrates real-world scraping architecture including concurrency, retry strategies, structured logging, CLI filtering, and CSV analytics export.
 
 ---
 
-## 🚀 Key Capabilities
+## Overview
 
-| Capability | Description |
-|------------|------------|
-| 🔄 Concurrent Scraping | Uses `ThreadPoolExecutor` for parallel page extraction |
-| 🔁 Retry Strategy | Implements `urllib3 Retry` with HTTPAdapter |
-| 🔐 Session Pooling | Uses `requests.Session()` for connection reuse |
-| 📄 Pagination Detection | Automatically detects total page count |
-| 🧹 Encoding-Safe Parsing | Handles UTF-8 and currency anomalies |
-| 🧾 CLI Filtering | Keyword-based filtering using `argparse` |
-| 📊 Analytics Summary | Calculates average, min, and max price |
-| 📁 CSV Export | Structured export to CSV |
+The scraper extracts structured book data from:
+
+http://books.toscrape.com
+
+It is designed to simulate production-grade scraper design rather than a simple script.
+
+### Core Objectives
+
+- Implement concurrent scraping
+- Apply resilient retry handling
+- Ensure encoding-safe numeric parsing
+- Provide structured CLI interaction
+- Export clean analytics-ready data
 
 ---
 
-## 🏗 Architecture Overview
+## Features
 
-BookScraper Class
+| Feature | Description |
+|----------|-------------|
+| Concurrent Scraping | Parallel page processing using ThreadPoolExecutor |
+| Retry Strategy | urllib3 Retry with HTTPAdapter |
+| Session Pooling | Connection reuse via requests.Session() |
+| Pagination Detection | Automatically detects total available pages |
+| Encoding-Safe Parsing | Handles UTF-8 and currency anomalies |
+| CLI Filtering | Keyword-based filtering via argparse |
+| Sorting Support | Price-based sorting (asc/desc) |
+| CSV Export | Structured CSV output |
+| Analytics Summary | Calculates average, minimum, and maximum price |
+
+---
+
+## Architecture
+
+BookScraper
 │
-├── Session Initialization (Retry + Headers)
+├── Session Setup
+│ ├── Headers
+│ └── Retry Strategy
+│
 ├── Pagination Detection
-├── Page Scraping (Concurrent Execution)
+│
+├── Concurrent Page Scraping
+│
 ├── Data Parsing & Cleaning
-├── Filtering Logic
-├── Sorting Logic
+│
+├── Filtering & Sorting
+│
 ├── CSV Export
-└── Structured Output + Logging
+│
+└── Structured Logging
 
 
-### 📈 Design Benefits
+### Design Benefits
 
-- Maintainability  
-- Scalability  
-- Testability  
-- Clean separation of concerns  
+- Maintainable
+- Scalable
+- Testable
+- Clean separation of concerns
 
 ---
 
-## 🛠 Technology Stack
+## Technology Stack
 
 | Layer | Technology |
 |-------|------------|
 | Language | Python 3.x |
 | HTTP Client | requests |
-| HTML Parsing | BeautifulSoup4 |
+| Parsing | BeautifulSoup4 |
 | Concurrency | concurrent.futures |
-| CLI Interface | argparse |
+| CLI | argparse |
 | Logging | logging |
 | Retry Handling | urllib3 Retry |
 
 ---
 
-## 📦 Installation
+# Installation
 
-### 1️⃣ Clone Repository
+## 1. Clone Repository
 
 ```bash
 git clone https://github.com/Nagukore/advanced-book-scraper.git
 cd advanced-book-scraper
-2️⃣ Create Virtual Environment
+2. Create Virtual Environment
+Windows
 python -m venv .venv
 .venv\Scripts\activate
-3️⃣ Install Dependencies
+macOS / Linux
+python3 -m venv .venv
+source .venv/bin/activate
+3. Install Dependencies
 pip install -r requirements.txt
-▶ Usage Examples
-🔎 Basic Keyword Search
+Usage
+Basic Keyword Search
 python main.py --keyword travel
-📊 Sort by Price (Ascending)
+Sort by Price (Ascending)
 python main.py --keyword travel --sort asc
-📄 Limit Pages
+Limit Number of Pages
 python main.py --keyword travel --pages 10
-📁 Custom Output File
+Custom Output File
 python main.py --keyword travel --output travel_books.csv
-📊 Output Structure
+Output Structure
 Console Output
-Field	Description
-Title	Book Title
-Price	Book Price
-Rating	Star Rating
-Page	Page Number
-Summary Metrics
+Column	Description
+Title	Book title
+Price	Book price
+Rating	Star rating
+Page	Page number
+Analytics Summary
 Total Matches: 12
 Average Price: £34.56
-Cheapest: £12.95
-Most Expensive: £57.83
-CSV Output Columns
-Title	Price	Rating	Page
-🎯 Engineering Highlights
-Object-Oriented Design (OOP)
+Cheapest Book: £12.95
+Most Expensive Book: £57.83
+CSV Columns
+Title, Price, Rating, Page
+Engineering Highlights
+Object-Oriented Architecture
 
 Concurrent execution for performance
 
-Retry & backoff strategy
+Retry and backoff mechanism
 
-Encoding-safe numeric parsing
+Encoding-safe numeric extraction
 
-Modular CLI tool design
+CLI-based data filtering
 
-Production-style logging
+Structured logging practices
 
-📈 Future Improvements
-SQLite database integration
+Future Improvements
+SQLite persistence layer
 
-Category-based scraping
+Category-wise scraping
 
 REST API wrapper (FastAPI)
 
-Streamlit analytics dashboard
+Streamlit dashboard
 
 Docker containerization
 
-Unit testing suite
+Unit test coverage
 
-⚠ Disclaimer
-This scraper is built for educational purposes using a publicly available sandbox website.
+Disclaimer
+This scraper is built for educational purposes using a public sandbox website.
 
-👤 Author
+Author
 Nagesh
 AI/ML & Web Development Enthusiast
 Focused on scalable system design and automation tools.
